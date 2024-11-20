@@ -15,10 +15,39 @@ a {
     color:#5993bb;
 }
 
+/*.add-to-cart[data-action="add"] {
+    background-color: #28a745; *//* Зеленый фон, если товар не добавлен *//*
+    color: #ffffff; *//* Белый текст *//*
+    padding: 10px 15px; *//* Внутренние отступы *//*
+    border: none; *//* Без рамки *//*
+    border-radius: 5px; *//* Закругленные края *//*
+    text-decoration: none; *//* Убираем подчеркивание *//*
+    display: inline-block; *//* Блочный элемент для кнопочного вида *//*
+    cursor: pointer; *//* Курсор в виде руки *//*
+    transition: background-color 0.3s; *//* Плавный переход при наведении *//*
+}
+
+.add-to-cart[data-action="remove"] {
+    background-color: #007BFF; *//* Синий фон, если товар добавлен *//*
+    color: #ffffff; *//* Белый текст *//*
+    padding: 10px 15px; *//* Внутренние отступы *//*
+    border: none; *//* Без рамки *//*
+    border-radius: 5px; *//* Закругленные края *//*
+    text-decoration: none; *//* Убираем подчеркивание *//*
+    display: inline-block; *//* Блочный элемент для кнопочного вида *//*
+    cursor: pointer; *//* Курсор в виде руки *//*
+    transition: background-color 0.3s; *//* Плавный переход при наведении *//*
+}
+
+.add-to-cart:hover {
+    background-color: #0056b3; *//* Темно-синий цвет при наведении *//*
+}*/
+
 a:hover {
     color:#77b6e2;
 }
 
+/*
 a.button, input[type="submit"] {
     color:#fff;
     background:#5993bb;
@@ -27,6 +56,7 @@ a.button, input[type="submit"] {
     font-size:14px;
     border:0;
 }
+*/
 
 a.button.light {
     color:#666;
@@ -80,7 +110,7 @@ tbody td.num {
     text-align:right;
 }
 
-td input[type="submit"] {
+/*td input[type="submit"] {
     font-size:12px;
     padding:4px 10px;
 }
@@ -104,7 +134,7 @@ form p input {
     background:#efefef;
     color:#666;
     border-radius:4px;
-}
+}*/
 
 ul.errorlist {
    float:left;
@@ -327,4 +357,44 @@ form div.field {
     background:#efefef;
     color:#666;
     border-radius:4px;
+}
+
+/* Общие стили для всех кнопок */
+.btn {
+    color: #fff; /* Белый текст */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
+}
+
+/* Синий стиль кнопки "Add to cart" */
+.btn-add {
+    background-color: #5993bb; /* Синий */
+}
+
+.btn-add:hover {
+    background-color: #0056b3; /* Темно-синий */
+}
+
+.btn-add:active {
+    background-color: #004085; /* Очень темный синий */
+    transform: scale(0.98); /* Нажатие */
+}
+
+/* Зеленый стиль кнопки "Update" */
+.btn-update {
+    background-color: #28a745; /* Зеленый */
+}
+
+.btn-update:hover {
+    background-color: #218838; /* Темно-зеленый */
+}
+
+.btn-update:active {
+    background-color: #1e7e34; /* Очень темный зеленый */
+    transform: scale(0.98); /* Нажатие */
 }

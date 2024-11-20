@@ -15,7 +15,15 @@
             </a>
         </h2>
         <p class="price">₽{{ product.price }}</p>
+
+        <div class="update-cart">
+            {% include "shop/form_add.html" %}
+        </div>
+
         {{ product.description|linebreaks }}
     </div>
 {% endblock %}
-
+{% block script %}
+    <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="{% static 'shop/js/add_to_cart.js' %}"></script>
+{% endblock %}

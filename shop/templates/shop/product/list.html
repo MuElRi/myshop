@@ -22,15 +22,35 @@
         <h1>{% if category %}{{ category.name }}{% else %}Products
             {% endif %}</h1>
         {% for product in products %}
-        <div class="item">
-            <a href="{{ product.get_absolute_url }}">
-                <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "shop/img/no_image.png" %}{% endif %}">
-            </a>
-            <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-            <br>
-            ${{ product.price }}
-        </div>
+            <div class="item">
+                <a href="{{ product.get_absolute_url }}">
+                    <img src="{% if product.image %}{{ product.image.url }}
+                        {% else %}{% static "shop/img/no_image.png" %}{% endif %}">
+                </a>
+                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                <br>
+                ₽{{ product.price }}
+                <br>
+<!--                <a href="#" class="add-to-cart" data-id="{{ product.id }}"-->
+<!--                   data-action="{% if product.id|stringformat:'d' in cart %}remove{% else %}add{% endif %}"-->
+<!--                   data-url="{% url 'cart:add_to_cart' %}">-->
+<!--                    {% if product.id|stringformat:"d" in cart %}-->
+<!--                        In cart-->
+<!--                    {% else %}-->
+<!--                        Add to cart-->
+<!--                    {% endif %}-->
+<!--                </a>-->
+                <div class="update-cart">
+                    {% load custom_tags %}
+                    {% with cart_product_form=cart_product_forms|key:product.id quantity=quantities|key:product.id %}
+                        {% include "shop/form_add.html" %}
+                    {% endwith %}
+                </div>
+            </div>
         {% endfor %}
     </div>
 {% endblock %}
-
+{% block script %}
+    <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="{% static 'shop/js/add_to_cart.js' %}"></script>
+{% endblock %}
