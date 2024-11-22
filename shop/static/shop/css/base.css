@@ -80,7 +80,7 @@ table {
 table th, table td {
     text-align:left;
     font-size:14px;
-    padding:10px;
+    padding:12px;
     margin:0;
 }
 
@@ -102,15 +102,27 @@ table.cart {
     margin-bottom:40px;
 }
 
+table.cart .name{
+    width:15vw;
+}
+
+table.cart .col-picture{
+    width:23vw;
+}
+
 table.cart img {
-    width:180px;
+    width:20vw;
+}
+
+table .cart-form{
+    width:15vw;
 }
 
 tbody td.num {
-    text-align:right;
+    text-align:left;
 }
 
-/*td input[type="submit"] {
+td input[type="submit"] {
     font-size:12px;
     padding:4px 10px;
 }
@@ -125,7 +137,7 @@ form p label {
     padding-bottom:4px;
 }
 
-form p input {
+/*form p input {
     width:300px;
     font-size:13px;
     margin-bottom:10px;
@@ -369,6 +381,8 @@ form div.field {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    weight: 70px;
+    height: 45px
 }
 
 /* Синий стиль кнопки "Add to cart" */
@@ -398,3 +412,31 @@ form div.field {
     background-color: #1e7e34; /* Очень темный зеленый */
     transform: scale(0.98); /* Нажатие */
 }
+
+/*
+form p input {{
+    width: 60px; */
+/* Ширина поля *//*
+
+    padding: 5px; */
+/* Внутренние отступы *//*
+
+    font-size: 14px; */
+/* Размер текста *//*
+
+    border: 1px solid #ccc; */
+/* Цвет рамки *//*
+
+    border-radius: 4px; */
+/* Закругленные углы *//*
+
+    text-align: center; */
+/* Центровка текста *//*
+
+    outline: none; */
+/* Убираем подсветку при фокусе *//*
+
+    transition: border-color 0.3s ease; */
+/* Плавное изменение цвета рамки *//*
+
+}*/

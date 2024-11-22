@@ -1,11 +1,13 @@
-<form action="{% url 'cart:cart_add_' %}" method="POST">
+<form action="{% url 'cart:cart_add' %}" method="POST">
     {% csrf_token %}
     {% if quantity == 0 %}
         {{ cart_product_form.action_type }}
         {{ cart_product_form.product_id }}
         <input type="submit" value="Add to cart" class="btn btn-add">
     {% else %}
-        {{ cart_product_form }}
+        {{ cart_product_form.quantity }}
+        {{ cart_product_form.action_type }}
+        {{ cart_product_form.product_id }}
         <input type="submit" value="Update" class="btn btn-update">
     {% endif %}
 </form>
