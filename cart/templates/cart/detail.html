@@ -11,7 +11,6 @@
                 <th>Image</th>
                 <th>Product</th>
                 <th>Quantity</th>
-<!--                <th>Remove</th>-->
                 <th>Unit price</th>
                 <th>Price</th>
             </tr>
@@ -28,28 +27,30 @@
                         </td>
                         <td class="name">{{ product.name }}</td>
                         <td class="cart-form">
-                             <div class="update-cart">
-                                 {% load custom_tags %}
-                                 {% with cart_product_form=item.update_quantity_form quantity=quantities|key:product.id %}
-                                     {% include "shop/form_add.html" %}
-                                 {% endwith %}
-                             </div>
+                            {% load custom_tags %}
+                            {% with cart_product_form=item.update_quantity_form quantity=quantities|key:product.id %}
+                                {% include "shop/form_add.html" %}
+                            {% endwith %}
                         </td>
-                        <td class="num">${{ item.price }}</td>
-                        <td class="num">${{ item.total_price }}</td>
+                        <td class="num">₽{{ item.price }}</td>
+                        <td class="num total-product-price">₽{{ item.total_price }}</td>
                     </tr>
                 {% endwith %}
             {% endfor %}
             <tr class="total">
                 <td>Total</td>
                 <td colspan="3"></td>
-                <td class="num">${{ cart.get_total_price }}</td>
+                <td class="num total-price">₽{{ cart.get_total_price }}</td>
             </tr>
         </tbody>
     </table>
 <p class="text-right">
-    <a href="{% url "shop:product_list" %}" class="button light">Continue shopping</a>
-    <a href="#" class="button">Checkout</a>
+    <a href="{% url 'shop:product_list' %}" class="button light">
+        Continue shopping
+    </a>
+    <a href="{% url 'orders:order_create' %}" class="button">
+        Checkout
+    </a>
 </p>
 {% endblock %}
 {% block script %}

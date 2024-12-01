@@ -371,72 +371,164 @@ form div.field {
     border-radius:4px;
 }
 
-/* Общие стили для всех кнопок */
-.btn {
-    color: #fff; /* Белый текст */
-    border: none;
+
+/* Общие стили для формы */
+.update-cart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для кнопок */
+.update-cart input[type="submit"] {
     padding: 10px 20px;
     font-size: 16px;
+    color: white;
+    background-color: #5c6bc0;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
-    weight: 70px;
-    height: 45px
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
 }
 
-/* Синий стиль кнопки "Add to cart" */
-.btn-add {
-    background-color: #5993bb; /* Синий */
+.update-cart input[type="submit"]:hover {
+    background-color: #3f51b5;
+    transform: scale(1.1);
 }
 
-.btn-add:hover {
-    background-color: #0056b3; /* Темно-синий */
+.update-cart input[type="submit"]:active {
+    background-color: #3949ab;
+    transform: scale(1);
 }
 
-.btn-add:active {
-    background-color: #004085; /* Очень темный синий */
-    transform: scale(0.98); /* Нажатие */
+/* Стили для кнопки "Add" */
+.update-cart input[type="submit"][value="Add"] {
+    background-color: #4caf50;
 }
 
-/* Зеленый стиль кнопки "Update" */
-.btn-update {
-    background-color: #28a745; /* Зеленый */
+.update-cart input[type="submit"][value="Add"]:hover {
+    background-color: #388e3c;
 }
 
-.btn-update:hover {
-    background-color: #218838; /* Темно-зеленый */
+/* Стили для кнопки "-" */
+.update-cart input[type="submit"][value="-"] {
+    background-color: #f44336;
 }
 
-.btn-update:active {
-    background-color: #1e7e34; /* Очень темный зеленый */
-    transform: scale(0.98); /* Нажатие */
+.update-cart input[type="submit"][value="-"]:hover {
+    background-color: #d32f2f;
 }
 
-/*
-form p input {{
-    width: 60px; */
-/* Ширина поля *//*
+/* Стили для кнопки "+" */
+.update-cart input[type="submit"][value="+"] {
+    background-color: #ff9800;
+}
 
-    padding: 5px; */
-/* Внутренние отступы *//*
+.update-cart input[type="submit"][value="+"]:hover {
+    background-color: #f57c00;
+}
 
-    font-size: 14px; */
-/* Размер текста *//*
+/* Стили для поля количества */
+.update-cart input[name="quantity"] {
+    width: 60px;
+    text-align: center;
+    font-size: 18px;
+    padding: 5px;
+    margin: 0 10px;
+    border: 2px solid #5c6bc0;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
 
-    border: 1px solid #ccc; */
-/* Цвет рамки *//*
+.update-cart input[name="quantity"]:focus {
+    border-color: #3f51b5;
+}
 
-    border-radius: 4px; */
-/* Закругленные углы *//*
+/* Анимация для появления кнопок */
+.update-cart input[type="submit"], .update-cart input[name="quantity"] {
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
 
-    text-align: center; */
-/* Центровка текста *//*
+.update-cart input[type="submit"][value="-"],
+.update-cart input[type="submit"][value="+"],
+.update-cart input[name="quantity"] {
+    opacity: 1;
+    animation: fadeIn 0.5s forwards;
+}
 
-    outline: none; */
-/* Убираем подсветку при фокусе *//*
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
-    transition: border-color 0.3s ease; */
-/* Плавное изменение цвета рамки *//*
+.order-form label, input {
+    float:left;
+    clear:both;
+}
 
-}*/
+.order-form label {
+    font-size:15px;
+    padding-bottom:4px;
+}
+
+.order-form input {
+    width:300px;
+    font-size:13px;
+    margin-bottom:10px;
+    padding:10px 12px;
+    border:0;
+    background:#efefef;
+    color:#666;
+    border-radius:4px;
+}
+
+.order-form input[type="submit"] {
+    background: #4caf50;
+    color: white;
+}
+
+.order-form input[type="submit"]:hover {
+    background-color: #3f51b5;
+    transform: scale(0.98);
+}
+
+.order-form input[type="submit"]:active {
+    background-color: #3949ab;
+    transform: scale(1);
+}
+
+.form-pay input {
+    width:150px;
+    font-size:13px;
+    margin-bottom:10px;
+    padding:10px 12px;
+    border:0;
+    background:#efefef;
+    color:#666;
+    border-radius:4px;
+}
+
+.form-pay input[type="submit"] {
+    background: #4caf50;
+    color: white;
+}
+
+.form-pay input[type="submit"]:hover {
+    background-color: #3f51b5;
+    transform: scale(0.98);
+}
+
+.form-pay input[type="submit"]:active {
+    background-color: #3949ab;
+    transform: scale(1);
+}

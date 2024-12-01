@@ -12,14 +12,24 @@
         </div>
         <div id="subheader">
             <div class="cart">
-                Your cart is empty.
+                 {% with total_items=cart|length %}
+                        <a href="{% url "cart:cart_detail" %}" class = "cart-info">
+                            {% if total_items > 0 %}
+                                {{ total_items }} item{{ total_items|pluralize }},
+                                ₽{{ cart.get_total_price }}
+                            {% else %}
+                                 Your cart is empty.
+                            {% endif %}
+                        </a>
+                {% endwith %}
             </div>
         </div>
         <div id="content">
             {% block content %}
             {% endblock %}
         </div>
-    {% block script%}
-    {% endblock %}
+        <script src="{% static 'shop/js/update_cart_info.js' %}"></script>
+        {% block script%}
+        {% endblock %}
     </body>
 </html>

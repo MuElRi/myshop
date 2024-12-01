@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
-    'cart.apps.CartConfig'
+    'cart.apps.CartConfig',
+    'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig'
 ]
 
 MIDDLEWARE = [
@@ -65,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -130,3 +133,20 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 CART_SESSION_ID = 'cart'
+
+#конфигурация сервера эл почты
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'eldar00319g@gmail.com'
+EMAIL_HOST_PASSWORD = 'bjel hudd yxge fvyd'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+
+#подключили платежный инструмент ЮKassa
+YOOKASSA_TEST_SHOP_ID = "499898"  # Тестовый Shop ID
+YOOKASSA_TEST_SECRET_KEY = "test_q-AElJCz9GsDJxH0WnxBkJkYhwApC6B2W0Tdcmrv1uo"  # Тестовый Secret Key
+YOOKASSA_API_URL = "https://api.yookassa.ru/v3/payments"  # URL API ЮKassa
+YOOKASSA_RETURN_URL = "http://127.0.0.1:8000/payment/success/"  # URL после оплаты
+
+

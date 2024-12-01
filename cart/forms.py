@@ -1,9 +1,11 @@
 from django import forms
 
-PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(0, 21)]
-
-
 class CartAddProductForm(forms.Form):
-    quantity = forms.TypedChoiceField(choices = PRODUCT_QUANTITY_CHOICES, coerce = int, required=False)
-    action_type = forms.CharField(widget=forms.HiddenInput())
+    quantity = forms.IntegerField(
+        initial=1,
+        min_value=1,
+        max_value=20,
+        widget=forms.NumberInput(attrs={'readonly': 'readonly'}),
+        required=False
+    )
     product_id = forms.IntegerField(widget=forms.HiddenInput())

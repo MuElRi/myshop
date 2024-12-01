@@ -1,15 +1,16 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const csrftoken = Cookies.get('csrftoken');
 
-    const updateCartContainers = document.querySelectorAll('.update-cart')
-    updateCartContainers.forEach(container=> {
-        container.addEventListener('submit', function(e) {
-
-            e.preventDefault();  // Останавливаем стандартное поведение формы
-            const form = container.querySelector('form')
+    const forms = document.querySelectorAll('.update-cart')
+    forms.forEach(form=> {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();  // Останавливаем стандартное поведение формы
             const url = form.action
-            console.log(url)
+            const button = event.submitter
+            action = button.value
+
             var formData = new FormData(form)
+            formData.append("action", action)
 
             options = {
                 method: 'POST',
@@ -17,16 +18,70 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 headers:{ 'X-CSRFToken': csrftoken },
                 mode: 'same-origin'
             }
-
             fetch(url, options)
-                .then(response => response.text())
-                .then(html => {
-                    console.log(3)
-                    container.innerHTML = html
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success){
+                        if (data.quantity!==0){
+                            form.innerHTML = `
+                                <input type="submit" value="-" class="btn btn-update">
+                                <input type="hidden" name="product_id" value="${data.product_id}">
+                                <input type="number" name="quantity" value="${data.quantity}" readonly>
+                                <input type="submit" value="+" class="btn btn-update">
+                              `;
+                        }
+                        else{
+                           form.innerHTML = `
+                                <input type="hidden" name="product_id" value="${data.product_id}">
+                                <input type="submit" value="Add" class="btn btn-add-product">
+                              `;
+                        }
+                        updateCartInfo(data)
+                    }
+                    else{
+                         // Ошибка: показываем сообщение пользователю
+                        alert(data.message || 'Произошла ошибка. Попробуйте снова.');
+                    }
                 })
-                .catch(error => console.error('Ошибка:', error));
+                .catch((error) => {
+                     console.error('Ошибка сети:', error);
+                     alert('Не удалось соединиться с сервером. Проверьте подключение.');
+                });
         });
     });
+});
+
+
+
+//document.addEventListener('DOMContentLoaded', (event) => {
+//    const csrftoken = Cookies.get('csrftoken');
+//
+//    const updateCartContainers = document.querySelectorAll('.update-cart')
+//    updateCartContainers.forEach(container=> {
+//        container.addEventListener('submit', function(e) {
+//
+//            e.preventDefault();  // Останавливаем стандартное поведение формы
+//            const form = container.querySelector('form')
+//            const url = form.action
+//            console.log(url)
+//            var formData = new FormData(form)
+//
+//            options = {
+//                method: 'POST',
+//                body: formData,
+//                headers:{ 'X-CSRFToken': csrftoken },
+//                mode: 'same-origin'
+//            }
+//
+//            fetch(url, options)
+//                .then(response => response.text())
+//                .then(html => {
+//                    console.log(3)
+//                    container.innerHTML = html
+//                })
+//                .catch(error => console.error('Ошибка:', error));
+//        });
+//    });
 
         // Получаем все кнопки "add-to-cart"
 //    const addToCartButtons = document.querySelectorAll('a.add-to-cart');
@@ -63,5 +118,3 @@ document.addEventListener('DOMContentLoaded', (event) => {
 //                });
 //        });
 //    });
-});
-
