@@ -43,8 +43,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         // Обновить общую сумму
                         const totalPriceCell = document.querySelector('.total-price');
                         if (totalPriceCell){
-                            totalPriceCell.textContent = `$${data.total_price}`;
+                            totalPriceCell.textContent = `₽${data.total_price}`;
                         }
+                        const discountCell = document.querySelector('.discount');
+                        if (discountCell){
+                            discountCell.textContent = `– ₽ ${data.discount}`;
+                        }
+                        const PriceAfterDiscountCell = document.querySelector('.total-price-after-discount');
+                        if (PriceAfterDiscountCell){
+                            PriceAfterDiscountCell.textContent = `₽ ${data.total_price_after_discount}`;
+                        }
+
                         updateCartInfo(data)
                     }
                     else{
@@ -53,7 +62,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     }
                 })
                 .catch((error) => {
-                     console.error('Ошибка сети:', error);
                      alert('Не удалось соединиться с сервером. Проверьте подключение.');
                 });
         });

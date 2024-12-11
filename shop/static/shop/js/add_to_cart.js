@@ -1,54 +1,64 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const csrftoken = Cookies.get('csrftoken');
 
-    const forms = document.querySelectorAll('.update-cart')
-    forms.forEach(form=> {
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();  // Останавливаем стандартное поведение формы
-            const url = form.action
-            const button = event.submitter
-            action = button.value
+    const selectors = [
+    '.product-list ', // Селектор для первого шаблона
+    '.product-detail'      // Селектор для второго шаблона
+];
 
-            var formData = new FormData(form)
-            formData.append("action", action)
+    // Делегирование событий для всех форм корзины
+    selectors.forEach(selector=>{
+        const element = document.querySelector(selector);
+        if (element){
+            element.addEventListener('submit', function(event) {
+                const form = event.target;
+                if (form.classList.contains('update-cart')) {
+                    event.preventDefault(); // Останавливаем стандартное поведение формы
 
-            options = {
-                method: 'POST',
-                body: formData,
-                headers:{ 'X-CSRFToken': csrftoken },
-                mode: 'same-origin'
-            }
-            fetch(url, options)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success){
-                        if (data.quantity!==0){
-                            form.innerHTML = `
-                                <input type="submit" value="-" class="btn btn-update">
-                                <input type="hidden" name="product_id" value="${data.product_id}">
-                                <input type="number" name="quantity" value="${data.quantity}" readonly>
-                                <input type="submit" value="+" class="btn btn-update">
-                              `;
-                        }
-                        else{
-                           form.innerHTML = `
-                                <input type="hidden" name="product_id" value="${data.product_id}">
-                                <input type="submit" value="Add" class="btn btn-add-product">
-                              `;
-                        }
-                        updateCartInfo(data)
-                    }
-                    else{
-                         // Ошибка: показываем сообщение пользователю
-                        alert(data.message || 'Произошла ошибка. Попробуйте снова.');
-                    }
-                })
-                .catch((error) => {
-                     console.error('Ошибка сети:', error);
-                     alert('Не удалось соединиться с сервером. Проверьте подключение.');
-                });
-        });
-    });
+                    const url = form.action;
+                    const button = event.submitter; // Кнопка, вызвавшая событие
+                    const action = button.value;
+
+                    const formData = new FormData(form);
+                    formData.append("action", action);
+
+                    const options = {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'X-CSRFToken': csrftoken },
+                        mode: 'same-origin'
+                    };
+
+                    fetch(url, options)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                if (data.quantity !== 0) {
+                                    form.innerHTML = `
+                                        <input type="submit" value="-" class="btn btn-update">
+                                        <input type="hidden" name="product_id" value="${data.product_id}">
+                                        <input type="number" name="quantity" value="${data.quantity}" readonly>
+                                        <input type="submit" value="+" class="btn btn-update">
+                                      `;
+                                } else {
+                                    form.innerHTML = `
+                                        <input type="hidden" name="product_id" value="${data.product_id}">
+                                        <input type="submit" value="Add" class="btn btn-add-product">
+                                      `;
+                                }
+                                updateCartInfo(data);
+                            } else {
+                                alert(data.message || 'Произошла ошибка. Попробуйте снова.');
+                            }
+                        })
+                        .catch(error => {
+                            alert('Не удалось соединиться с сервером. Проверьте подключение.');
+                        });
+                }
+            });
+        }
+    })
+
 });
 
 

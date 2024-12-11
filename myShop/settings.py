@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+from django.conf.global_settings import LOGOUT_REDIRECT_URL
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,12 +27,14 @@ SECRET_KEY = 'django-insecure-b!2hp+w0mm3jl3-%3_@$&_q&38p&d!li*#x#8vf1u&50%q3d9@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["key-explicitly-katydid.ngrok-free.app", "127.0.0.1", "localhost"]
+CSRF_TRUSTED_ORIGINS = ["https://key-explicitly-katydid.ngrok-free.app"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'account.apps.AccountConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,7 +44,9 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
-    'payment.apps.PaymentConfig'
+    'payment.apps.PaymentConfig',
+    'easy_thumbnails',
+    'coupons.apps.CouponsConfig',
 ]
 
 MIDDLEWARE = [
@@ -117,12 +123,16 @@ USE_I18N = True
 
 USE_TZ = True
 
+LOGIN_REDIRECT_URL = 'shop:product_list'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "static"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -142,6 +152,7 @@ EMAIL_HOST_PASSWORD = 'bjel hudd yxge fvyd'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
+THUMBNAIL_DEBUG = True
 
 #подключили платежный инструмент ЮKassa
 YOOKASSA_TEST_SHOP_ID = "499898"  # Тестовый Shop ID
@@ -149,4 +160,11 @@ YOOKASSA_TEST_SECRET_KEY = "test_q-AElJCz9GsDJxH0WnxBkJkYhwApC6B2W0Tdcmrv1uo"  #
 YOOKASSA_API_URL = "https://api.yookassa.ru/v3/payments"  # URL API ЮKassa
 YOOKASSA_RETURN_URL = "http://127.0.0.1:8000/payment/success/"  # URL после оплаты
 
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 1
+
+#   ngrok http --url=key-explicitly-katydid.ngrok-free.app 8000

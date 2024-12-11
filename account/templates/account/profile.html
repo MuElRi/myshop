@@ -1,0 +1,43 @@
+{% extends "shop/base.html" %}
+{% load static thumbnail %}
+
+{% block title %}Profile - My shop{% endblock %}
+{% block style %}
+    <link href="{% static 'account/css/profile.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div id="profile">
+    <h1>Your Profile</h1>
+    <div class="profile-layout">
+        <!-- Левая часть: Фото и данные профиля -->
+        <div class="profile-details">
+            <div class="profile-photo">
+                <img src="{% thumbnail request.user.profile.photo|default:'defaults/defaults.png' 250x250 quality=90 %}" alt="Profile Photo">
+            </div>
+            <div class="profile-info">
+                <h2>{{ request.user.first_name|default:request.user.username }}</h2>
+                <p><strong>Email:</strong> {{ request.user.email }}</p>
+                {% if request.user.first_name %}
+                    <p><strong>First name:</strong> {{ request.user.first_name }}</p>
+                {% endif %}
+                {% if request.user.last_name %}
+                    <p><strong>Last name:</strong> {{ request.user.last_name }}</p>
+                {% endif %}
+                {% if request.user.profile.date_of_birth %}
+                    <p><strong>Date of Birth:</strong> {{ request.user.profile.date_of_birth }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Правая часть: Кнопки -->
+        <div class="profile-links">
+            <ul>
+                <li><a href="{% url 'orders:order_list' %}" class="button">Order history</a></li>
+                <li><a href="{% url 'edit' %}" class="button">Edit Profile</a></li>
+                <li><a href="{% url 'password_change' %}" class="button reset">Reset Password</a></li>
+                <li><a href="{% url 'logout' %}" class="button loggout">Loggout</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

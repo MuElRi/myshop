@@ -1,0 +1,102 @@
+#profile {
+    display: flex;
+    flex-direction: column; /* Элементы сверху вниз */
+    align-items: flex-start; /* Выравнивание по левому краю */
+    padding: 20px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#profile h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 30px; /* Отступ после заголовка */
+    text-align: left;
+}
+
+.profile-layout {
+    display: flex;
+    justify-content: space-between; /* Разделение на две колонки */
+    gap: 50px; /* Пространство между колонками */
+    width: 100%;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Выравнивание текста и фото по левому краю */
+    gap: 20px; /* Отступы между элементами */
+    width: 50%; /* Ширина левой колонки */
+}
+
+.profile-photo img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid #5993bb;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Отступ от фото до текста */
+}
+
+.profile-info {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.profile-info h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.profile-info p {
+    margin: 5px 0;
+    line-height: 1.6;
+}
+
+.profile-links {
+    display: flex;
+    flex-direction: column; /* Кнопки сверху вниз */
+    gap: 15px; /* Отступы между кнопками */
+    width: 200px; /* Фиксированная ширина кнопок */
+}
+
+.profile-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-links ul li {
+    margin: 0;
+}
+
+.profile-links ul li a {
+    font-size: 1.2rem; /* Размер кнопок */
+    color: white;
+    padding: 12px 20px; /* Удобный размер кнопок */
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: block;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+.profile-links ul li a.button {
+    background-color: #4caf50; /* Зеленый цвет */
+    margin-bottom: 10%;
+}
+
+.profile-links ul li a.reset {
+    background-color: #007bff; /* Синий цвет */
+}
+
+.profile-links ul li a.loggout {
+    background-color: #f44336; /* Красный цвет */
+}
+
+.profile-links ul li a:hover {
+    transform: scale(1.01);
+    background-color: #3949ab; /* Цвет при наведении */
+}
+
+

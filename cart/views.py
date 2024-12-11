@@ -1,13 +1,14 @@
-from itertools import product
-from statistics import quantiles
-
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+
+from coupons.forms import CouponApplyForm
+from coupons.views import coupon_apply
 from shop.models import Product
 from .cart import Cart
 from .forms import CartAddProductForm
+from shop.recommender import Recommender
 
 def cart_detail(request):
     cart = Cart(request)
@@ -19,8 +20,17 @@ def cart_detail(request):
                                         'product_id': product.id,
                                         })
         quantities[product.id] = item['quantity']
+    coupon_apply_form = CouponApplyForm()
+    r = Recommender()
+    cart_products = [item['product'] for item in cart]
+    if (cart_products):
+        recommended_products = r.suggested_products_for(cart_products,
+                                                        max_results=4)
+    else:
+        recommended_products = []
     return render(request, 'cart/detail.html', {'cart': cart,
-                                                'quantities': quantities})
+                                                'quantities': quantities,
+                                                'coupon_apply_form': coupon_apply_form})
 
 @require_POST
 def update_cart(request):
@@ -46,14 +56,16 @@ def update_cart(request):
     elif action == "-":
         cart.reduce(product)
 
-    total_product_price = cart.get_total_product_price(product)
-    total_price = cart.get_total_price()
-    total_items = len(cart)
+    response = {"success": True,
+                "quantity": cart.get_quantity(product),
+                "product_id": product.id,
+                "total_price": cart.get_total_price(),
+                "total_price_after_discount": cart.get_total_price_after_discount(),
+                "total_product_price": cart.get_total_product_price(product),
+                "total_items": len(cart),
+                "discount": cart.get_discount()}
 
-    quantity = cart.get_quantity(product)
-    return JsonResponse({"success": True, "quantity": quantity,
-                         "product_id": product.id, "total_price": total_price,
-                         "total_product_price": total_product_price, "total_items": total_items})
+    return JsonResponse(response)
 
 
 

@@ -4,6 +4,7 @@ body {
     margin:0;
     padding:0;
     font-family:helvetica, sans-serif;
+
 }
 
 h1, h2, h3, h4, h5 , h6 {
@@ -15,48 +16,25 @@ a {
     color:#5993bb;
 }
 
-/*.add-to-cart[data-action="add"] {
-    background-color: #28a745; *//* Зеленый фон, если товар не добавлен *//*
-    color: #ffffff; *//* Белый текст *//*
-    padding: 10px 15px; *//* Внутренние отступы *//*
-    border: none; *//* Без рамки *//*
-    border-radius: 5px; *//* Закругленные края *//*
-    text-decoration: none; *//* Убираем подчеркивание *//*
-    display: inline-block; *//* Блочный элемент для кнопочного вида *//*
-    cursor: pointer; *//* Курсор в виде руки *//*
-    transition: background-color 0.3s; *//* Плавный переход при наведении *//*
-}
 
-.add-to-cart[data-action="remove"] {
-    background-color: #007BFF; *//* Синий фон, если товар добавлен *//*
-    color: #ffffff; *//* Белый текст *//*
-    padding: 10px 15px; *//* Внутренние отступы *//*
-    border: none; *//* Без рамки *//*
-    border-radius: 5px; *//* Закругленные края *//*
-    text-decoration: none; *//* Убираем подчеркивание *//*
-    display: inline-block; *//* Блочный элемент для кнопочного вида *//*
-    cursor: pointer; *//* Курсор в виде руки *//*
-    transition: background-color 0.3s; *//* Плавный переход при наведении *//*
-}
-
-.add-to-cart:hover {
-    background-color: #0056b3; *//* Темно-синий цвет при наведении *//*
-}*/
 
 a:hover {
     color:#77b6e2;
 }
 
-/*
-a.button, input[type="submit"] {
+a.button {
     color:#fff;
     background:#5993bb;
     border-radius:4px;
     padding:10px 20px;
     font-size:14px;
     border:0;
+    margin: 0 5px;
 }
-*/
+
+a.button:hover {
+     transform: scale(1.03);
+}
 
 a.button.light {
     color:#666;
@@ -127,7 +105,7 @@ td input[type="submit"] {
     padding:4px 10px;
 }
 
-form p label, form p input {
+/*form p label, form p input {
     float:left;
     clear:both;
 }
@@ -135,18 +113,8 @@ form p label, form p input {
 form p label {
     font-size:14px;
     padding-bottom:4px;
-}
-
-/*form p input {
-    width:300px;
-    font-size:13px;
-    margin-bottom:10px;
-    padding:10px 12px;
-    border:0;
-    background:#efefef;
-    color:#666;
-    border-radius:4px;
 }*/
+
 
 ul.errorlist {
    float:left;
@@ -157,12 +125,33 @@ ul.errorlist {
    padding:10px 0;
 }
 
-
 #header {
-    padding:10px 100px;
-    font-size:18px;
-    overflow:auto;
+    padding: 10px 100px;
+    font-size: 18px;
+    display: flex; /* Flexbox для выравнивания */
+    justify-content: space-between; /* Логотип слева, остальное справа */
+    align-items: center;
+    overflow: auto;
 }
+
+#header .user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#header .user a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#header .user img {
+    border-radius: 45%;
+    width: 45px;
+    height: 45px;
+}
+
 
 #subheader {
     background:#ececec;
@@ -175,7 +164,7 @@ ul.errorlist {
     font-family: 'Ubuntu', sans-serif;
     float:left;
     color:#333;
-    font-size:22px;
+    font-size:27px;
     margin-right:10%;
 }
 
@@ -190,7 +179,7 @@ ul.errorlist {
 }
 
 #sidebar {
-    width:220px;
+    width:15vw;
     padding:30px 20px 0 0;
     float:left;
 }
@@ -215,6 +204,12 @@ ul.errorlist {
     border-radius:4px;
 }
 
+#sidebar ul li.selected:hover {
+    transform: scale(1.03);
+    background-color: #3f51b5;
+}
+
+
 #sidebar ul li.selected a {
     color:#fff;
 }
@@ -226,16 +221,70 @@ ul.errorlist {
     overflow:hidden;
 }
 
+#price-filter {
+    display: flex;
+    justify-content: center; /* Центрируем элементы */
+    align-items: center; /* Выравниваем по вертикали */
+    gap: 12px; /* Расстояние между элементами */
+    margin: 20px 10px; /* Центрируем форму и добавляем отступ сверху */
+    padding: 15px; /* Внутренние отступы */
+    background-color: #f9f9f9; /* Светлый фон */
+    border-radius: 10px; /* Закругленные углы */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    width: 40%; /* Занимает всю ширину */
+}
+
+#price-filter input[type="number"] {
+    width: 25%; /* Ширина полей ввода */
+    height: 40px; /* Высота полей ввода */
+    padding: 0 10px; /* Внутренние отступы */
+    font-size: 14px; /* Размер шрифта */
+    border: 1px solid #ccc; /* Цвет рамки */
+    border-radius: 5px; /* Закругленные углы */
+    transition: border-color 0.3s ease; /* Плавный переход */
+}
+
+#price-filter button {
+    height: 40px;
+    width: 30%;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #5993bb;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+#price-filter button:hover{
+    transform: scale(1.03);
+    background-color: #3f51b5;
+}
+
+.product-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .product-list .item {
-    width:25%;
-    padding:10px 20px 10px 0;
+    width:21vw;
+    padding: 3vh 0.5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     float:left;
     text-align:center;
     line-height:1.2;
+    background: #f1f1f1;
+    border-radius: 6px;
+    margin: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .product-list .item img {
-    width:100%;
+    height:18vw;
     margin-bottom:8px;
 }
 
@@ -261,10 +310,6 @@ ul.errorlist {
 
 .product-detail h2 {
     margin-top:10px;
-}
-
-.order-form {
-    float:left;
 }
 
 .order-info {
@@ -375,18 +420,18 @@ form div.field {
 /* Общие стили для формы */
 .update-cart {
     display: flex;
-    justify-content: space-between;
+    justify-content:center;
     align-items: center;
-    margin: 20px 0;
-    padding: 20px;
-    background-color: #f8f8f8;
+    margin: 20px 0 0;
+    background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 18vw;
+    height: 6vh;
 }
 
 /* Стили для кнопок */
 .update-cart input[type="submit"] {
-    padding: 10px 20px;
     font-size: 16px;
     color: white;
     background-color: #5c6bc0;
@@ -398,7 +443,7 @@ form div.field {
 
 .update-cart input[type="submit"]:hover {
     background-color: #3f51b5;
-    transform: scale(1.1);
+    transform: scale(1.03);
 }
 
 .update-cart input[type="submit"]:active {
@@ -408,6 +453,9 @@ form div.field {
 
 /* Стили для кнопки "Add" */
 .update-cart input[type="submit"][value="Add"] {
+   /* padding: 10px 100px;*/
+    width: 15vw;
+    height: 4vh;
     background-color: #4caf50;
 }
 
@@ -416,15 +464,23 @@ form div.field {
 }
 
 /* Стили для кнопки "-" */
-.update-cart input[type="submit"][value="-"] {
-    background-color: #f44336;
+/* Стили для кнопки "-" */
+.update-cart input[type="submit"][value="-"],
+.update-cart input[type="submit"][value="+"] {
+    width: 4vw; /* Одинаковая ширина для кнопок */
+    height: 4vh; /* Одинаковая высота для кнопок */
+    font-size: 16px; /* Единый размер текста */
+    background-color: #f44336; /* Базовый цвет для обеих кнопок */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .update-cart input[type="submit"][value="-"]:hover {
     background-color: #d32f2f;
 }
 
-/* Стили для кнопки "+" */
 .update-cart input[type="submit"][value="+"] {
     background-color: #ff9800;
 }
@@ -432,14 +488,13 @@ form div.field {
 .update-cart input[type="submit"][value="+"]:hover {
     background-color: #f57c00;
 }
-
 /* Стили для поля количества */
 .update-cart input[name="quantity"] {
-    width: 60px;
+    width: 4vw;
+    height: 4vh;
     text-align: center;
     font-size: 18px;
-    padding: 5px;
-    margin: 0 10px;
+    margin: 0 1vw;
     border: 2px solid #5c6bc0;
     border-radius: 5px;
     transition: border-color 0.3s ease;
@@ -471,17 +526,31 @@ form div.field {
     }
 }
 
-.order-form label, input {
+.login-form{
+    clear: both; /* Обнуляем флоаты после формы */
+    width: 100%; /* Чтобы форма занимала всю ширину, если это нужно */
+}
+
+.standart-form {
+    float:left;
+}
+
+.standart-form ul{
+    clear: both; /* Обнуляем флоаты после формы */
+    float:left;
+}
+
+.standart-form label, input {
     float:left;
     clear:both;
 }
 
-.order-form label {
+.standart-form label {
     font-size:15px;
     padding-bottom:4px;
 }
 
-.order-form input {
+.standart-form input {
     width:300px;
     font-size:13px;
     margin-bottom:10px;
@@ -492,17 +561,17 @@ form div.field {
     border-radius:4px;
 }
 
-.order-form input[type="submit"] {
+.standart-form input[type="submit"] {
     background: #4caf50;
     color: white;
 }
 
-.order-form input[type="submit"]:hover {
+.standart-form input[type="submit"]:hover {
     background-color: #3f51b5;
     transform: scale(0.98);
 }
 
-.order-form input[type="submit"]:active {
+.standart-form input[type="submit"]:active {
     background-color: #3949ab;
     transform: scale(1);
 }
@@ -531,4 +600,38 @@ form div.field {
 .form-pay input[type="submit"]:active {
     background-color: #3949ab;
     transform: scale(1);
+}
+
+.order-summary {
+    width:300px;
+    background:#efefef;
+    padding:10px 20px;
+    color:#333;
+    border-bottom:4px solid #5993bb;
+    font-size:16px;
+}
+
+.order-summary h3 {
+    color:#5993bb;
+}
+
+.order-summary ul li {
+    margin:0;
+    padding:0;
+}
+
+.order-summary span {
+    float:right;
+}
+
+.order-container{
+    margin-top: 8%;
+}
+
+.success{
+    color: green;
+}
+
+.failure{
+    color: red;
 }

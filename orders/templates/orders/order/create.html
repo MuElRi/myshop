@@ -1,3 +1,4 @@
+
 {% extends "shop/base.html" %}
 {% block title %}
     Checkout
@@ -7,18 +8,30 @@
     <div class="order-info">
         <h3>Your order</h3>
         <ul>
-            {% for item in cart %}
-            <li>
-                {{ item.quantity }}x {{ item.product.name }}
-                <span>${{ item.total_price }}</span>
-            </li>
-            {% endfor %}
+             {% for item in cart %}
+                <li>
+                    {{ item.quantity }}x {{ item.product.name }}
+                    <span>₽{{ item.total_price }}</span>
+                </li>
+              {% endfor %}
+              {% if cart.coupon %}
+                <li>
+                    "{{ cart.coupon.code }}" ({{ cart.coupon.discount }}% off)
+                    <span class="neg">- ₽{{ cart.get_discount }}</span>
+                </li>
+              {% endif %}
         </ul>
-        <p>Total: ₽{{ cart.get_total_price }}</p>
+             <p>Total: ₽{{ cart.get_total_price_after_discount }}</p>
     </div>
-<form method="post" class="order-form">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <p><input type="submit" value="Place order"></p>
-</form>
+    <form method="post" class="standart-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><input type="submit" value="Place order"></p>
+    </form>
+<!--    <form method="post" class="standart-form">-->
+<!--        {% csrf_token %}-->
+<!--        {{ form.as_p }}-->
+<!--        <p><input type="submit" value="Place order"></p>-->
+<!--    </form>-->
 {% endblock %}
+

@@ -1,4 +1,4 @@
-<form class ="update-cart" action="{% url 'cart:update_cart' %}" method="POST">
+<form class ="update-cart" action="{% url 'cart:update_cart'%}" method="POST">
     {% csrf_token %}
     {% if quantity == 0 %}
         {{ cart_product_form.product_id }}

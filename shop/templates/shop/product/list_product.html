@@ -1,0 +1,16 @@
+{% for product in products %}
+    <div class="item">
+        <a href="{{ product.get_absolute_url }}" target="_blank">
+            {% load thumbnail %}
+            <img src="{% thumbnail product.image|default:'defaults/no_image.png' 300x300 crop='smart' quality=100 %}">
+        </a>
+        <a href="{{ product.get_absolute_url }}" target="_blank">{{ product.name }}</a>
+        <br>
+        ₽{{ product.price }}
+        <br>
+        {% load custom_tags %}
+        {% with cart_product_form=cart_product_forms|key:product.id quantity=quantities|key:product.id %}
+            {% include "shop/form_add.html" %}
+        {% endwith %}
+    </div>
+{% endfor %}

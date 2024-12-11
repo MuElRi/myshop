@@ -5,20 +5,35 @@
         <meta charset="utf-8" />
         <title>{% block title %}My shop{% endblock %}</title>
         <link href="{% static 'shop/css/base.css' %}" rel="stylesheet">
+        {% block style %}
+        {% endblock %}
     </head>
     <body>
         <div id="header">
             <a href="/" class="logo">My shop</a>
+            {% if request.user.is_authenticated %}
+                 <div class="user">
+                     <a href="{% url 'profile' %}" target="_blank">
+                         {% load thumbnail %}
+                         <img src="{% thumbnail request.user.profile.photo|default:'defaults/defaults.png' 45x45 quality=100 %}">
+                         <div class = "username">
+                             {{ request.user.first_name|default:request.user.username }}
+                         </div>
+                     </a>
+                 </div>
+            {% else %}
+                 <a href="{% url 'login' %}">Log-in</a>
+            {% endif %}
         </div>
         <div id="subheader">
             <div class="cart">
                  {% with total_items=cart|length %}
-                        <a href="{% url "cart:cart_detail" %}" class = "cart-info">
+                        <a href="{% url 'cart:cart_detail' %}" class = "cart-info">
                             {% if total_items > 0 %}
                                 {{ total_items }} item{{ total_items|pluralize }},
                                 ₽{{ cart.get_total_price }}
                             {% else %}
-                                 Your cart is empty.
+                                 Your cart is empty
                             {% endif %}
                         </a>
                 {% endwith %}

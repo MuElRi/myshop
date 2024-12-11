@@ -8,38 +8,41 @@
         <h3>Categories</h3>
         <ul>
             <li {% if not category %}class="selected"{% endif %}>
-                <a href="{% url "shop:product_list" %}">All</a>
+                <a href="{% url "shop:product_list" %}" class="category-filter" data-slug="">
+                    All
+                </a>
             </li>
             {% for c in categories %}
                 <li {% if category.slug == c.slug %}class="selected"
                     {% endif %}>
-                    <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                    <a href="{{ c.get_absolute_url }}" class="category-filter" data-slug="{{ c.slug }}">
+                        {{ c.name }}
+                    </a>
                 </li>
             {% endfor %}
         </ul>
     </div>
-    <div id="main" class="product-list">
-        <h1>{% if category %}{{ category.name }}{% else %}Products
-            {% endif %}</h1>
-        {% for product in products %}
-            <div class="item">
-                <a href="{{ product.get_absolute_url }}">
-                    <img src="{% if product.image %}{{ product.image.url }}
-                        {% else %}{% static "shop/img/no_image.png" %}{% endif %}">
-                </a>
-                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-                <br>
-                ₽{{ product.price }}
-                <br>
-                {% load custom_tags %}
-                {% with cart_product_form=cart_product_forms|key:product.id quantity=quantities|key:product.id %}
-                    {% include "shop/form_add.html" %}
-                {% endwith %}
-            </div>
-        {% endfor %}
+    <div id="main">
+        <h1>
+            Products
+<!--            {% if category %}-->
+<!--                {{ category.name }}-->
+<!--            {% else %}-->
+<!--                Products-->
+<!--            {% endif %}-->
+        </h1>
+        <form method="get" id="price-filter">
+            {{ price_form.min_price }}
+            {{ price_form.max_price }}
+            <button type="submit">Применить</button>
+        </form>
+        <div class="product-list">
+            {% include "shop/product/list_product.html" %}
+        </div>
     </div>
 {% endblock %}
 {% block script %}
     <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
     <script src="{% static 'shop/js/add_to_cart.js' %}"></script>
+    <script src="{% static 'shop/js/filter_product.js' %}"></script>
 {% endblock %}
