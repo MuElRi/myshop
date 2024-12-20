@@ -80,40 +80,7 @@ class UpdateCartView(FormView):
         )
 
 
-# @require_POST
-# def update_cart(request):
-#     form = CartAddProductForm(request.POST)
-#     if not form.is_valid():
-#         return JsonResponse({"success": False, "message": "Неверные данные формы."},
-#                             status=400)
-#
-#     product_id = form.cleaned_data["product_id"]
-#     action = request.POST.get("action")
-#
-#     try:
-#         product = Product.objects.get(id=product_id)
-#     except Product.DoesNotExist:
-#         return JsonResponse({"success": False, "message": "Продукт не найден."},
-#                             status=404)
-#
-#     cart = Cart(request)
-#     # добавляем товар с количеством 1
-#     if action == "Add" or action == "+":
-#         cart.increase(product, limit=20)
-#     # уменьшаем количество товара или удаляем его из корзины, если его кол-во равно 0
-#     elif action == "-":
-#         cart.reduce(product)
-#
-#     response = {"success": True,
-#                 "quantity": cart.get_quantity(product),
-#                 "product_id": product.id,
-#                 "total_price": cart.get_total_price(),
-#                 "total_price_after_discount": cart.get_total_price_after_discount(),
-#                 "total_product_price": cart.get_total_product_price(product),
-#                 "total_items": len(cart),
-#                 "discount": cart.get_discount()}
-#
-#     return JsonResponse(response)
+
 
 
 
