@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     const options = {
                         method: 'POST',
                         body: formData,
-                        headers: { 'X-CSRFToken': csrftoken },
+                        headers: {'X-Requested-With': 'XMLHttpRequest',
+                                  'X-CSRFToken': csrftoken},
                         mode: 'same-origin'
                     };
 

@@ -45,8 +45,11 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'payment.apps.PaymentConfig',
+    'comments.apps.CommentsConfig',
+    'attachment.apps.AttachmentConfig',
     'easy_thumbnails',
     'coupons.apps.CouponsConfig',
+    'django.contrib.postgres',
 ]
 
 MIDDLEWARE = [
@@ -85,12 +88,21 @@ WSGI_APPLICATION = 'myShop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'myshop',
+        'USER': 'eldar',
+        'PASSWORD': '123',
     }
-}
+ }
 
 
 # Password validation

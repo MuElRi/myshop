@@ -14,8 +14,8 @@ def payment_completed(order_id):
     """
     order = Order.objects.get(id=order_id)
     # create invoice e-mail
-    subject = f'My Shop – Invoice no. {order.id}'
-    message = 'Please, find attached the invoice for your recent purchase.'
+    subject = f'My Shop – счет №{order.id}'
+    message = 'Пожалуйста, ознакомьтесь.'
     email = EmailMessage(subject,
                          message,
                          'eldar00319g@gmail.com',
@@ -29,5 +29,5 @@ def payment_completed(order_id):
     email.attach(f'order_{order.id}.pdf',
                  out.getvalue(),
                  'application/pdf')
-    # отправить электронное письмо
+
     email.send()

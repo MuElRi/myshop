@@ -11,8 +11,8 @@ def order_created(order_id):
     Задание по отправке уведомления по эл почте при успешной соединении заказа.
     """
     order = Order.objects.get(id=order_id)
-    subject = f'Order number. {order.id}'
+    subject = f'Номер заказа: {order.id}'
     message = (f'Успешно!\n\n'
-               f'Твой заказ: {order.id}')
+               f'Ваш заказ: {order.id}')
     mail_sent = send_mail(subject, message, 'eldar00319g@gmail.com', [order.email])
     return mail_sent

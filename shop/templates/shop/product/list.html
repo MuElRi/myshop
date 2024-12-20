@@ -8,14 +8,14 @@
         <h3>Categories</h3>
         <ul>
             <li {% if not category %}class="selected"{% endif %}>
-                <a href="{% url "shop:product_list" %}" class="category-filter" data-slug="">
+                <a href="{% url 'shop:product_list' %}" class="category-filter" data-slug="">
                     All
                 </a>
             </li>
             {% for c in categories %}
                 <li {% if category.slug == c.slug %}class="selected"
                     {% endif %}>
-                    <a href="{{ c.get_absolute_url }}" class="category-filter" data-slug="{{ c.slug }}">
+                    <a href="#" class="category-filter" data-slug="{{ c.slug }}">
                         {{ c.name }}
                     </a>
                 </li>
@@ -31,6 +31,10 @@
 <!--                Products-->
 <!--            {% endif %}-->
         </h1>
+        <form method="get" action="{% url 'shop:product_list' %}" id="search-form">
+            <input type="text" name="q" placeholder="Search products..." value="{{ query }}">
+            <button type="submit">Search</button>
+        </form>
         <form method="get" id="price-filter">
             {{ price_form.min_price }}
             {{ price_form.max_price }}

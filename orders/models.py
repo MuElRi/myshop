@@ -5,11 +5,13 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from coupons.models import Coupon
 
 class Order(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                                related_name='orders',
-                                blank=True,
-                                null = True,
-                                on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name='orders',
+        blank=True,
+        null = True,
+        on_delete=models.CASCADE)
+
     email = models.EmailField()
     city = models.CharField(max_length=50)
     postal_code = models.CharField(max_length=20)
@@ -21,18 +23,24 @@ class Order(models.Model):
         null=True,
         verbose_name="Apartment number"
     )  # Может быть пустым для частных домов
+
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
     payment_id = models.CharField(max_length=250, blank=True)
-    coupon = models.ForeignKey(Coupon,
-                               related_name='orders',
-                               null=True,
-                               blank=True,
-                               on_delete=models.SET_NULL)
-    discount = models.IntegerField(default=0,
-                                   validators=[MinValueValidator(0),
-                                               MaxValueValidator(100)])
+    coupon = models.ForeignKey(
+        Coupon,
+        related_name='orders',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL)
+
+    discount = models.IntegerField(
+        default=0,
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(100)
+        ])
 
     class Meta:
         ordering = ['-created']

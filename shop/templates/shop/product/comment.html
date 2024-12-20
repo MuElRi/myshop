@@ -1,0 +1,31 @@
+<div class="comment">
+    <p>
+        <strong>{{ comment.user.username }}</strong>
+        ({{ comment.created }})
+    </p>
+    <p>{{ comment.text }}</p>
+    <p>Rating: {{ comment.rating }} / 5</p>
+    {% for attachment in comment.attachments.all %}
+        {% if attachment.type == 'image' %}
+            <a href="{{ attachment.file.url }}" data-lightbox="iframe" data-title="Фото из комментария">
+                {% load thumbnail %}
+                <img src="{% thumbnail attachment.file 150x150 crop='smart' quality=100 %}" alt="Комментарий Фото">
+            </a>
+        {% endif %}
+        {% if attachment.type == 'video' %}
+            <a data-fancybox="gallery" href="{{ attachment.file.url }}">
+                <video>
+                    <source src="{{ attachment.file.url }}" type="video/mp4">
+                    Your browser does not support video.
+                </video>
+            </a>
+        {% endif %}
+    {% endfor %}
+    {% if request.user == comment.user %}
+        <form method="POST" class="delete-comment-form"
+              action="{% url 'comments:comment_delete' comment.product.id comment.id%}">
+            {% csrf_token %}
+            <button type="submit" class="delete-comment-button">Удалить комментарий</button>
+        </form>
+    {% endif %}
+</div>

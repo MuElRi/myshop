@@ -1,0 +1,213 @@
+.comments-container{
+    clear: both;
+}
+/* Общие стили для страницы */
+/*body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}*/
+
+/* Контейнер для комментариев */
+.comments {
+    max-width: 40%; /* Ограничиваем ширину, чтобы не было слишком широким */
+    margin: 20px 0;  /* Отступ сверху и снизу */
+    /*padding: 20px;*/
+   /* background-color: #fff;*/
+  /*  border-radius: 8px;*/
+    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+    width: 100%;      /* Делаем контейнер адаптивным */
+}
+
+/* Заголовки секций */
+.comments h3 {
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #333;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+    text-align: left;
+}
+
+/* Стили для каждого комментария */
+.comment {
+    margin-bottom: 25px;
+    padding: 10px;
+    border-bottom: 1px solid black;
+    text-align: left;
+}
+
+/* Имя пользователя и дата */
+.comment strong {
+    font-size: 16px;
+    color: #007bff;
+}
+
+.comment .header{
+    display: flex;
+}
+
+.comment .created {
+    font-size: 12px;
+    color: #888;
+    margin-left: 10px;
+}
+
+/* Текст комментария */
+.comment p {
+    font-size: 16px;
+    color: #333;
+}
+
+
+
+/* Рейтинг */
+.comment .rating {
+    font-size: 14px;
+    font-weight: bold;
+    color: #f39c12;
+}
+
+
+/* Общий стиль для вложений (фото и видео) */
+.comment img, .comment video {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;  /* Сохраняет соотношение сторон при обрезке */
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;  /* Курсор указывает, что элемент можно нажать */
+    margin-bottom: 10px;
+}
+
+/* Модальное окно lightbox */
+.lightbox-content {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: auto;
+    border-radius: 10px;
+}
+
+/* Стили для контейнера модального окна */
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Открытие модального окна */
+.lightbox-overlay.active {
+    display: flex;
+}
+
+
+/* Стили для формы комментария */
+.comment-form {
+    width:40%;
+    margin: 20px 0;
+   /* background-color: #f9f9f9;*/
+    /*border: 1px solid #ddd;*/
+    border-radius: 8px;
+    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+    width: 100%;  /* Форма будет заполнять доступное пространство */
+}
+
+/* Стили для меток полей формы */
+.comment-form label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+    color: #555;
+}
+
+/* Стили для полей ввода текста */
+.comment-form input[type="text"],
+.comment-form textarea,
+.comment-form select {
+    width: 90%;
+    max-height: 8%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
+}
+
+.comment-form input[type="text"]:focus,
+.comment-form textarea:focus,
+.comment-form select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Стили для кнопки отправки комментария */
+.comment-form button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.comment-form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для вложений */
+.comment-form div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.comment-form div input[type="file"] {
+    width: 75%;
+    padding: 8px;
+}
+
+.comment-form div input[type="checkbox"] {
+    margin-left: 10px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* Мобильная адаптивность */
+@media (max-width: 768px) {
+    .comments {
+        padding: 15px;
+    }
+
+    .comment-form {
+        padding: 15px;
+    }
+}
+.delete-comment-button {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.delete-comment-button:hover {
+    background-color: #e63e3f;
+}
+
+

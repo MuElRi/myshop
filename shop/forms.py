@@ -28,3 +28,4 @@ class PriceFilterForm(forms.Form):
                 raise forms.ValidationError("Invalid value")
         return max_price
 
+

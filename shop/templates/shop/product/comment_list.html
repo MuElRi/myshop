@@ -1,0 +1,33 @@
+<div class="comments">
+    {% if average_rating %}
+        <p><strong class="rating">Average rating: {{ average_rating }}</strong></p>
+    {% endif %}
+    <h3>Comments:</h3>
+    {% for comment in comments %}
+        {% include "shop/product/comment.html" %}
+    {% endfor %}
+    {% if user.is_authenticated %}
+        <form method="POST" class="comment-form"
+              action="{% url 'comments:comment_add' product.id%}">
+            <h3>Add a comment:</h3>
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <h3>Add attachments</h3>
+            {{ attachment_form.management_form }}
+            {% for form in attachment_form %}
+                <div>
+                    {{ form.file.label_tag }} {{ form.file }}
+                    {{ form.DELETE }}
+                </div>
+            {% endfor %}
+            <button type="submit">Add a comment</button>
+        </form>
+    {% else %}
+        <p>
+            To add a comment,
+            <a href="{% url 'login' %}">
+                Log-in
+            </a>
+        </p>
+    {% endif %}
+</div>

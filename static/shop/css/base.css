@@ -22,19 +22,16 @@ a:hover {
     color:#77b6e2;
 }
 
-a.button {
+/*
+a.button, input[type="submit"] {
     color:#fff;
     background:#5993bb;
     border-radius:4px;
     padding:10px 20px;
     font-size:14px;
     border:0;
-    margin: 0 5px;
 }
-
-a.button:hover {
-     transform: scale(1.03);
-}
+*/
 
 a.button.light {
     color:#666;
@@ -220,48 +217,10 @@ ul.errorlist {
     margin-right:-220px;
     overflow:hidden;
 }
-#search-form {
-    display: flex;
-    /*justify-content: center;*/
-    width: 40%;
-    align-items: center;
-    margin: 20px 0;
-    margin: 20px 10px; /* Центрируем форму и добавляем отступ сверху */
-}
-
-#search-form input[type="text"] {
-    width: 80%;
-    height: 40px;
-    padding: 0 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: border-color 0.3s ease;
-}
-
-#search-form button {
-    height: 40px;
-    margin-left: 10px;
-    padding: 0 20px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #5993bb;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
-}
-
-#search-form button:hover {
-    transform: scale(1.03);
-    background-color: #3f51b5;
-}
-
 
 #price-filter {
     display: flex;
-   /* justify-content: center;  Центрируем элементы */
+    justify-content: center; /* Центрируем элементы */
     align-items: center; /* Выравниваем по вертикали */
     gap: 12px; /* Расстояние между элементами */
     margin: 20px 10px; /* Центрируем форму и добавляем отступ сверху */
@@ -330,9 +289,10 @@ ul.errorlist {
     text-align:justify;
 }
 
-.product-detail .product-info {
+.product-detail .price {
     color:#333;
-    font-size:20px;
+    font-size:28px;
+    font-weight:bold;
 }
 
 .product-detail img {
@@ -347,10 +307,6 @@ ul.errorlist {
 
 .product-detail h2 {
     margin-top:10px;
-}
-
-.description{
-    ont-size:18px;
 }
 
 .order-info {
@@ -676,39 +632,3 @@ form div.field {
 .failure{
     color: red;
 }
-
-
-.attachments-gallery {
-    max-width: 40%; /* Ограничиваем ширину, чтобы не было слишком широким */
-    margin: 20px 0;  /* Отступ сверху и снизу */
-    /*padding: 20px;*/
-   /* background-color: #fff;*/
-  /*  border-radius: 8px;*/
-    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
-    width: 100%;      /* Делаем контейнер адаптивным */
-    clear:both;
-  /*  width: 40%;*/
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-   /* justify-content: center;*/
-}
-.attachments-gallery img,
-.attachments-gallery video {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;  /* Сохраняет соотношение сторон при обрезке */
-    border-radius: 5px;
-    margin-top: 5px;
-    cursor: pointer;  /* Курсор указывает, что элемент можно нажать */
-
-}
-/*
-.attachments-gallery img,
-.attachments-gallery video {
-    width: 30%;
-    height: auto;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-}*/
